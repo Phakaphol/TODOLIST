@@ -1,0 +1,513 @@
+<HTML></HTML><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="icon" type="image/jpg" href="/pic/logo.jpg" >
+    <script language="javascript" src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <script src="/jquery/jquery.js"></script>
+    
+<style>
+        *{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+
+form{
+	margin-top: 50px;
+	width:  100%;
+}
+
+.field{
+	margin-bottom: 10px;
+	display: flex;
+}
+.field input{
+	padding: 5px 10px;
+	width: 60%;
+	border: none;
+	font-size: 20px;
+	color: black;
+	background-color:white;
+}
+.field input:focus{
+	outline: none;
+}
+
+.field span{
+	display: inline-block;
+	margin-left: 10px;
+	cursor: pointer;
+	background-color:whitesmoke;
+	padding: 10px;
+	font-size: 20px;
+	transition: all 0.3s;
+	font-weight: bold;
+}
+.field span:last-child{
+	display: none;
+	padding: 12px;
+}
+.field span:hover{
+	background-color: green;
+}
+.field span:last-child:hover{
+	background-color: red;
+}
+
+</style>
+    
+    
+
+</head>
+<body>
+    <div  class="container-fluid" > 
+        <div class="row">
+            <%- include('navbar')%>
+        <div class="col-auto col-md-9 col-xl-10 px-sm-10 px-0 " style="background-color:#121212;">
+                <p id="signal"><%= signal %></p>
+                <form class="Start ms-5">
+                    <div class="card text-white mb-3" style="max-width: 80%; background-color:#990F02;" > 
+                        <div class="card-header">
+                           <h1>To-Do <span>
+                              <button id="rowAdder" type="button" class="btn btn-dark">
+                                <span class="bi bi-plus-square-dotted">
+                                </span> ADD
+                              </button>
+                            </span>
+                          </h1>  
+                          
+                        </div>
+                        <div class="card-body">
+                          <form>  
+                              <div id="row" class="mb-3">
+                                <div class="input-group m-0">
+                                  <div class="input-group-prepend">
+                                    <button id="etoP0" type="button" class="btn btn-warning etoP0">                                
+                                       Process
+                                    </button>
+                                    <button class="btn btn-danger"
+                                      id="DeleteRow" type="button">
+                                        <i class="bi bi-trash"></i>
+                                        Delete
+                                    </button>
+                                               
+                                  </div>
+                                  
+                                <input type="text" class="form-control m-input InTo-Do" id="InTo-Do" name="InTo-Do"  value=<%= A %>  />
+                                <button type="button" id="submitAdd" class="btn btn-primary submitAdd">                                
+                                  submit
+                               </button>
+                               
+                             
+                              </div> 
+                            </div>
+                                  
+                                    <div id="newinput"></div>   
+        
+                                    <input type="hidden"  name="Date_Time" id="Date_Time" />
+                                   
+                                    <input type="hidden"  name="Count" id="Count" value= <%= lenge_show %>  />
+                                    
+                        </form>
+
+                        </div>
+                      </div>
+
+                </form>
+
+                <form class="Process ms-5">
+                    <div class="card text-white bg-warning mb-3" style="max-width: 80%;"> 
+                        <div class="card-header">
+                          <h1>In-Progress <span>
+                            <button id="rowAdder2" type="button" class="btn btn-dark">
+                              <span class="bi bi-plus-square-dotted">
+                              </span> ADD
+                            </button>
+                          </span>
+                        </h1>  
+                        </div>
+                        <div class="card-body">
+
+                          <form >  
+                            <div id="row2" class="mb-3">
+                              <div class="input-group m-0">
+                                <div class="input-group-prepend">
+                                  <button type="button" id="ptoDone" class="btn btn-success ptoDone">                                
+                                     Done
+                                  </button>
+                                  <button class="btn btn-danger"
+                                    id="DeleteRow2" type="button">
+                                      <i class="bi bi-trash"></i>
+                                      Delete
+                                  </button>
+                                             
+                                </div>
+                               
+                              <input type="text" class="form-control m-input" id="In-Progress" name="In-Progress" value=<%= B %>   disabled />
+                           
+                            </div> 
+                          </div>
+                                
+                                  <div id="newinput2"></div>   
+      
+                                  <input type="hidden"  name="Date_Time2" id="Date_Time2" />
+                                 
+                                  <input type="hidden"  name="Count2" id="Count2" value= <%= lenge_show2 %> />
+                      </form>
+                          
+
+                        </div>
+                      </div>
+
+                </form>
+
+                <form class="Done ms-5">
+                    <div class="card text-white bg-success  mb-3" style="max-width: 80%;"> 
+                      <div class="card-header">
+                        <h1>Done <span>
+                           <button id="rowAdder3" type="button" class="btn btn-dark">
+                             <span class="bi bi-plus-square-dotted">
+                             </span> ADD
+                           </button>
+                         </span>
+                       </h1>  
+                       
+                     </div>
+                        <div class="card-body">
+                          <form  method="get" action="/Admin_set?">  
+                              <div id="row3" class="mb-3">
+                                <div class="input-group m-0">
+                                  <div class="input-group-prepend">
+                                    <button class="btn btn-danger"
+                                    id="DeleteRow3" type="button">
+                                      <i class="bi bi-trash"></i>
+                                      Delete
+                                  </button>
+                                              
+                                  </div>
+                                <input type="text" class="form-control m-input" id="In-Done" name="In-Done" value=<%= C %>  disabled />
+                              </div> 
+                            </div>
+                                  
+                            <div id="newinput3"></div>   
+        
+                            <input type="hidden"  name="Date_Time3" id="Date_Time3" />
+                                  
+                            <input type="hidden"  name="Count3" id="Count3"  value= <%= lenge_show3 %>  />
+                          </form>
+
+                        </div>
+                      </div>
+                </form>
+
+           
+            
+        </div>
+
+        </div>
+        
+
+
+    </div>
+    <script>
+      var normalizedDate = new Date(Date.now()).toISOString();
+         document.getElementById("Date_Time").value =  normalizedDate
+      
+         var count = parseInt(document.getElementById("Count").value)
+         var count2 = parseInt(document.getElementById("Count2").value)
+         var count3 = parseInt(document.getElementById("Count3").value)
+         if(document.getElementById("signal").innerHTML == 0 ){
+          document.getElementById(`InTo-Do`).disabled = true;
+                  document.getElementById(`submitAdd`).disabled = true;
+         }
+        
+         console.log("count")
+         console.log(count)
+  // ---------TO-DO--------------
+         $("#rowAdder").click(function () {
+            count = count+1
+            console.log(count)
+            if(count<2){
+              newRowAdd =
+            `<div id="row"class="mb-3"> <div class="input-group m-0">` +
+            '<div class="input-group-prepend">' +
+              `<button id="etoP0" type="submit" class="btn btn-warning me-1"> Process</button>`+
+            '<button class="btn btn-danger" id="DeleteRow" type="button">' +
+            '<i class="bi bi-trash"></i> Delete</button> </div>' +
+            `<input type="text" id="InTo-Do" name="InTo-Do" class="form-control m-input InTo-Do" />`+
+            `<button type="button" id="submitAdd" class="btn btn-primary submitAdd"> submit</button>`+
+            
+            '</div> </div>';
+
+            $('#newinput').append(newRowAdd);
+
+            }
+            else{
+                count = 1;
+                console.log("ครบ")
+                console.log(count)
+            }    
+        });
+        
+       
+        $("body").on("click", ".submitAdd", function () {
+        
+         //$('.submitAdd').click(function(){
+           let addSend = document.getElementById(`InTo-Do`)
+         
+            console.log(addSend.value)
+          $(function () { 
+             //let jsonAdd = {}
+            $.ajax ({
+                url: '/Admin_set_TODO',
+                type: "POST",
+                data: addSend.value,
+                //dataType: 'text',
+                success: function (result){  
+                console.log("---------Result---------")
+                console.log(result)  
+                  document.getElementById(`InTo-Do`).disabled = true;
+                  document.getElementById(`submitAdd`).disabled = true;
+                  
+                },  
+                error: function(error){
+                    console.log(`Error ${error}`)
+                }
+
+            })
+          })
+
+        })
+
+        $("body").on("click", "#etoP0", function () {
+        
+        //$('.submitAdd').click(function(){
+          let addSend2 = document.getElementById(`InTo-Do`)
+        
+           console.log(addSend2.value)
+         $(function () { 
+            //let jsonAdd = {}
+           $.ajax ({
+               url: '/Admin_Inpro_TODO',
+               type: "PUT",
+               data: addSend2.value,
+               //dataType: 'text',
+               success: function (result){  
+               console.log("---------Result---------")
+               console.log(result)  
+                 document.getElementById(`InTo-Do`).disabled = true;
+                 document.getElementById(`submitAdd`).disabled = true;
+                 document.getElementById('InTo-Do').value = "";
+                 document.getElementById('In-Progress').value = result;
+
+                 
+               },  
+               error: function(error){
+                   console.log(`Error ${error}`)
+               }
+
+           })
+         })
+
+       })
+
+       $("body").on("click", "#ptoDone", function () {
+        
+          let addSend3 = document.getElementById('In-Progress')
+        
+           console.log(addSend3.value)
+         $(function () { 
+            //let jsonAdd = {}
+           $.ajax ({
+               url: '/Admin_Done_TODO',
+               type: "PUT",
+               data: addSend3.value,
+               //dataType: 'text',
+               success: function (result){  
+               console.log("---------Result---------")
+               console.log(result)  
+                 document.getElementById(`InTo-Do`).disabled = true;
+                 document.getElementById(`submitAdd`).disabled = true;
+                 document.getElementById('InTo-Do').value = "";
+                 document.getElementById('In-Progress').value = "";
+                 document.getElementById('In-Done').value = result;
+
+                 
+               },  
+               error: function(error){
+                   console.log(`Error ${error}`)
+               }
+
+           })
+         })
+
+       })
+        
+        
+     
+        $("body").on("click", "#DeleteRow", function () {
+            count = count-1
+            console.log(count)
+            if(count > -1){
+             $(this).parents("#row").remove();
+             
+            }
+            else{
+                count = 0
+                console.log("count_end")
+            }
+            $(function () { 
+            //let jsonAdd = {}
+           $.ajax ({
+               url: '/Admin_Remove_TODO',
+               type: "DELETE",
+               data: "todo",
+               //dataType: 'text',
+               success: function (result){  
+               console.log("---------Result---------")
+               console.log(result)  
+                 
+
+                 
+               },  
+               error: function(error){
+                   console.log(`Error ${error}`)
+               }
+
+           })
+         })
+               
+        })
+         // ---------In-Progress--------------
+        $("#rowAdder2").click(function () {
+            count2 = count2+1
+            console.log(count2)
+            if(count2 < 2){
+                newRowAdd2 =
+            '<div id="row"class="mb-3"> <div class="input-group m-0">' +
+            '<div class="input-group-prepend">' +
+              '<button type="button" class="btn btn-success me-1"> Done</button>'+
+            '<button class="btn btn-danger" id="DeleteRow" type="button">' +
+            '<i class="bi bi-trash"></i> Delete</button> </div>' +
+            '<input type="text" id="In-Progress" name="In-Progress" class="form-control m-input In-Progress" disabled> </div> </div>';
+ 
+            $('#newinput2').append(newRowAdd2);
+
+            }
+            else{
+                count2 = 1;
+                console.log("ครบ2")
+                console.log(count2)
+            }
+            
+        });
+ 
+        $("body").on("click", "#DeleteRow2", function () {
+            count2 = count2-1
+            console.log(count2)
+            if(count2 > -1){
+             $(this).parents("#row2").remove();
+             document.getElementById('In-Done').value = "";
+            }
+            else{
+                count2 = 0
+                console.log("count_end")
+            }
+
+            $(function () { 
+            //let jsonAdd = {}
+           $.ajax ({
+               url: '/Admin_Remove_TODO',
+               type: "DELETE",
+               data: "inpro",
+               //dataType: 'text',
+               success: function (result){  
+               console.log("---------Result---------")
+               console.log(result)  
+                 
+
+                 
+               },  
+               error: function(error){
+                   console.log(`Error ${error}`)
+               }
+
+           })
+         })
+            
+            
+        })
+
+       // ---------Done--------------
+
+       $("#rowAdder3").click(function () {
+            count3 = count3+1
+            console.log(count3)
+            if(count3<2){
+                newRowAdd3 =
+            '<div id="row"class="mb-3"> <div class="input-group m-0">' +
+            '<div class="input-group-prepend">' +
+            '<button class="btn btn-danger" id="DeleteRow3" type="button">' +
+            '<i class="bi bi-trash"></i> Delete</button> </div>' +
+            '<input type="text" id="In-Done" name="In-Done" class="form-control m-input In-Done" disabled > </div> </div>';
+ 
+            $('#newinput3').append(newRowAdd3);
+
+            }
+            else{
+                count3 = 1;
+                console.log("ครบ")
+                console.log(count3)
+            }
+            
+        });
+       
+     
+        $("body").on("click", "#DeleteRow3", function () {
+            count3 = count3-1
+            console.log(count3)
+            if(count3 > -1){
+              document.getElementById('In-Done').value = "";
+             
+            }
+            else{
+                count3 = 0
+                console.log("count_end")
+            }
+
+            $(function () { 
+            //let jsonAdd = {}
+           $.ajax ({
+               url: '/Admin_Remove_TODO',
+               type: "DELETE",
+               data: "done",
+               //dataType: 'text',
+               success: function (result){  
+               console.log("---------Result---------")
+               console.log(result)  
+               document.getElementById(`InTo-Do`).disabled = false;
+              document.getElementById(`submitAdd`).disabled = false;
+                 
+
+                 
+               },  
+               error: function(error){
+                   console.log(`Error ${error}`)
+               }
+
+           })
+         })
+        
+            
+        })
+    </script>
+        
+
+</body>
+</html>
